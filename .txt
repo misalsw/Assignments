@@ -1,0 +1,62 @@
+Ques
+1)	Print EmployeeName and Total Pay who has base pay greater than 10000.
+
+Swapnil Misal@Swaps MINGW64 ~/Desktop/Bridgelabz/linux-content (master)
+$ cat data.csv | awk '$4 > 10000' | awk '{print $2 " " $4}';
+EmployeeName BasePay
+NATHANIEL 167411
+GARY 155966
+ALBERT 212739
+CHRISTOPHER 77916
+PATRICK 134401
+DAVID 118602
+ALSON 92492
+DAVID 256576
+JOANNE 285262
+PATRICIA 99722
+EDWARD 294580
+
+2) What is the aggregate total pay of employees whose title is ‘CAPTAIN’.
+
+Swapnil Misal@Swaps MINGW64 ~/Desktop/Bridgelabz/linux-content (master)
+$ cat data.csv | grep CAPTAIN | awk '{sum+=$8}END{print sum}'
+1171796
+
+ 3)	Print Job Title and Overtimepay , between 7k & 10k.
+
+Swapnil Misal@Swaps MINGW64 ~/Desktop/Bridgelabz/linux-content (master)
+$ cat data.csv | awk '$5>=7000 && $5<=10000' | awk '{print $3 " " $5}';
+DEPUTYCHIEF 9737
+ASSTDEPUTY 8601
+
+4)	Print Average Basepay
+
+Swapnil Misal@Swaps MINGW64 ~/Desktop/Bridgelabz/linux-content (master)
+$ cat data.csv | awk '{sum+=$4}END{print sum/NR}'
+157972
+
+Question:
+Move files from one folder to respective Folders.
+
+Swapnil Misal@Swaps MINGW64 ~/Desktop/Bridgelabz/Assignment (master)
+$ touch abc.txt def.txt ghi.txt jkl.txt
+
+Swapnil Misal@Swaps MINGW64 ~/Desktop/Bridgelabz/Assignment (master)
+$ nano copyfiles.sh
+
+Swapnil Misal@Swaps MINGW64 ~/Desktop/Bridgelabz/Assignment (master)
+$ cat copyfiles.sh
+for file in `ls *.txt`;
+do
+        folderName=`echo $file | awk -F. '{print $1}'`;
+        mkdir $folderName;
+        mv $file $folderName;
+        echo Copied $file to $folderName/;
+done
+
+Swapnil Misal@Swaps MINGW64 ~/Desktop/Bridgelabz/Assignment (master)
+$ bash copyfiles.sh
+Copied abc.txt to abc/
+Copied def.txt to def/
+Copied ghi.txt to ghi/
+Copied jkl.txt to jkl/
